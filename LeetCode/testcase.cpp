@@ -119,7 +119,51 @@ TEST_CASE("Solution002")
 		node6.next = &node44;
 		auto &l2 = node5;
 
+		ListNode nodea(8);
+		ListNode nodeb(0);
+		ListNode nodec(7);
+		nodec.next = &nodeb;
+		nodeb.next = &nodea;
+
 		auto result = s.addTwoNumber(&l1, &l2);
 
+		REQUIRE(isEqualList(result, &nodec));
+
+	}
+
+	SECTION("two")
+	{
+		//todo: 也要用 list 改
+		Solution002 s;
+		ListNode node3(3);
+		ListNode node4(4);
+		ListNode node2(2);
+		node2.next = &node4;
+		node4.next = &node3;
+		auto &l1 = node2;
+
+		ListNode node44(4);
+		ListNode node6(6);
+		ListNode node5(5);
+		node5.next = &node6;
+		node6.next = &node44;
+		auto &l2 = node5;
+
+		ListNode nodea(8);
+		ListNode nodeb(0);
+		ListNode nodec(9);
+		nodec.next = &nodeb;
+		nodeb.next = &nodea;
+
+		auto result = s.addTwoNumber(&l1, &l2);
+
+		REQUIRE_FALSE(isEqualList(result, &nodec));
+	}
+
+	SECTION("three")
+	{
+		Solution002 s;
+		ListNode *l1 = nullptr, *l2 = nullptr;
+		REQUIRE(isEqualList(l1, l2));
 	}
 }

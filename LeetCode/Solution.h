@@ -58,7 +58,38 @@ public:
 	ListNode * addTwoNumber(ListNode* l1, ListNode* l2)
 	{
 		ListNode *result = nullptr;
+		int num = listToNumber(l1) + listToNumber(l2);
+		result = numberToList(num);
+		return result;
+	}
+
+private:
+	int listToNumber(ListNode *l)
+	{
+		int result = 0, base = 1;
+
+		while (l)
+		{
+			result = result + base * l->val;
+			base *= 10;
+			l = l->next;
+		}
 
 		return result;
+	}
+
+	ListNode * numberToList(int num)
+	{
+		ListNode head(0);
+		ListNode *p = &head;
+
+		while (num)
+		{
+			p->next = new ListNode(num % 10);
+			p = p->next;
+			num /= 10;
+		}
+		
+		return head.next;
 	}
 };

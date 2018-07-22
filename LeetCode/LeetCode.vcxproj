@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp" />
-    <ClInclude Include="Solution.h" />
+    <ClInclude Include="solution.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="testcase.cpp" />

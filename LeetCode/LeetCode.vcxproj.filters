@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Solution.h">
+    <ClInclude Include="catch.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="catch.hpp">
+    <ClInclude Include="solution.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
