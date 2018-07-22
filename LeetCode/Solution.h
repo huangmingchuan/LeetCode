@@ -57,6 +57,8 @@ class Solution002
 public:
 	ListNode * addTwoNumber(ListNode* l1, ListNode* l2)
 	{
+		ListNode *result = nullptr;
 
+		return result;
 	}
 };

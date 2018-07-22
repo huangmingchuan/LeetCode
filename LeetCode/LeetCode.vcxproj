@@ -151,6 +151,7 @@
     <ClInclude Include="Solution.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="testcase.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
