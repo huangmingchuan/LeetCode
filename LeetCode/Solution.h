@@ -12,6 +12,33 @@ struct ListNode
     ListNode(int x) : val(x), next(nullptr) {}
 };
 
+class LinkedList
+{
+public:
+    LinkedList() 
+    {
+        head = new ListNode(0);
+    }
+
+    LinkedList(initializer_list<int> l) : LinkedList()
+    {
+        auto p = head;
+        for (auto i : l)
+        {
+            p->next = new ListNode(i);
+            p = p->next;
+        }
+    }
+
+    ListNode* first()
+    {
+        return head->next;
+    }
+
+private:
+    ListNode * head;
+};
+
 bool isEqualList(ListNode *l1, ListNode *l2)
 {
     while (l1 && l2)

@@ -9,63 +9,27 @@ TEST_CASE("isEqualList")
 {
     SECTION("one")
     {
-        //todo: 改为 list，而非手写 ListNode
-        ListNode node1(1);
-        ListNode node2(2);
-        ListNode node3(3);
-        node1.next = &node2;
-        node2.next = &node3;
+        LinkedList list1{ 1,2,3 };
+        LinkedList list2{ 1,2,3 };
 
-        ListNode node4(1);
-        ListNode node5(2);
-        ListNode node6(3);
-        node4.next = &node5;
-        node5.next = &node6;
-
-        auto &l1 = node1;
-        auto &l2 = node4;
-
-        REQUIRE(isEqualList(&l1, &l2));
+        REQUIRE(isEqualList(list1.first(), list2.first()));
     }
 
     SECTION("two")
     {
-        ListNode node1(1);
-        ListNode node2(2);
-        ListNode node3(3);
-        node1.next = &node2;
-        node2.next = &node3;
+        LinkedList list1{ 1,2,3 };
+        LinkedList list2{ 4,5,6 };
 
-        ListNode node4(4);
-        ListNode node5(5);
-        ListNode node6(6);
-        node4.next = &node5;
-        node5.next = &node6;
-
-        auto &l1 = node1;
-        auto &l2 = node4;
-
-        REQUIRE_FALSE(isEqualList(&l1, &l2));
+        REQUIRE_FALSE(isEqualList(list1.first(), list2.first()));
     }
 
     SECTION("three")
     {
-        ListNode node1(1);
-        ListNode node2(2);
-        ListNode node3(3);
-        node1.next = &node2;
-        node2.next = &node3;
+        LinkedList list1{ 1,2,3 };
+        LinkedList list2{ 1,2,2 };
 
-        ListNode node4(1);
-        ListNode node5(2);
-        ListNode node6(2);
-        node4.next = &node5;
-        node5.next = &node6;
+        REQUIRE_FALSE(isEqualList(list1.first(), list2.first()));
 
-        auto &l1 = node1;
-        auto &l2 = node4;
-
-        REQUIRE_FALSE(isEqualList(&l1, &l2));
     }
 
     SECTION("four")
@@ -105,65 +69,26 @@ TEST_CASE("Solution002")
     SECTION("one")
     {
         Solution002 s;
-        ListNode node3(3);
-        ListNode node4(4);
-        ListNode node2(2);
-        node2.next = &node4;
-        node4.next = &node3;
-        auto &l1 = node2;
 
-        ListNode node44(4);
-        ListNode node6(6);
-        ListNode node5(5);
-        node5.next = &node6;
-        node6.next = &node44;
-        auto &l2 = node5;
+        LinkedList list1{ 2,4,3 };
+        LinkedList list2{ 5,6,4 };
+        LinkedList r{ 7,0,8 };
 
-        ListNode nodea(8);
-        ListNode nodeb(0);
-        ListNode nodec(7);
-        nodec.next = &nodeb;
-        nodeb.next = &nodea;
+        auto result = s.addTwoNumber(list1.first(), list2.first());
 
-        auto result = s.addTwoNumber(&l1, &l2);
-
-        REQUIRE(isEqualList(result, &nodec));
+        REQUIRE(isEqualList(result, r.first()));
 
     }
 
     SECTION("two")
     {
-        //todo: 也要用 list 改
         Solution002 s;
-        ListNode node3(3);
-        ListNode node4(4);
-        ListNode node2(2);
-        node2.next = &node4;
-        node4.next = &node3;
-        auto &l1 = node2;
+        
+        LinkedList list1{ 2,4,3 };
+        LinkedList list2{ 5,6,4 };
+        LinkedList r{ 7,0,9 };
 
-        ListNode node44(4);
-        ListNode node6(6);
-        ListNode node5(5);
-        node5.next = &node6;
-        node6.next = &node44;
-        auto &l2 = node5;
-
-        ListNode nodea(8);
-        ListNode nodeb(0);
-        ListNode nodec(9);
-        nodec.next = &nodeb;
-        nodeb.next = &nodea;
-
-        auto result = s.addTwoNumber(&l1, &l2);
-
-        REQUIRE_FALSE(isEqualList(result, &nodec));
+        REQUIRE_FALSE(isEqualList(r.first(), s.addTwoNumber(list1.first(), list2.first())));
     }
 
-    SECTION("three")
-    {
-        Solution002 s;
-        ListNode *l1 = nullptr, *l2 = nullptr;
-        REQUIRE(isEqualList(l1, l2));
-    }
 }
