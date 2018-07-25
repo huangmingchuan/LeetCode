@@ -120,3 +120,30 @@ private:
         return head.next;
     }
 };
+
+class Solution003
+{
+public:
+    int lengthOfLongestSubstring(string s)
+    {
+        int result = 0, max;
+        for (auto it1 = s.begin(); it1 != s.end(); ++it1)
+        {
+            max = 0;
+            set<int> set_temp;
+            for (auto it2 = it1; it2 != s.end(); ++it2)
+            {
+                if (!set_temp.insert(*it2).second)
+                {
+                    max = it2 - it1;
+                    if (max > result)
+                    {
+                        result = max;
+                    }
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+};

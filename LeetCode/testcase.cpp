@@ -92,3 +92,42 @@ TEST_CASE("Solution002")
     }
 
 }
+
+TEST_CASE("Solution003")
+{
+    SECTION("one")
+    {
+        Solution003 s;
+        string s1{ "abcabcbb" };
+        int len = 3;
+
+        REQUIRE(len == s.lengthOfLongestSubstring(s1));
+    }
+
+    SECTION("two")
+    {
+        Solution003 s;
+        string s1{ "bbbbb" };
+        int len = 1;
+
+        REQUIRE(len == s.lengthOfLongestSubstring(s1));
+    }
+
+    SECTION("three")
+    {
+        Solution003 s;
+        string s1{ "pwwkew" };
+        int len = 3;
+
+        REQUIRE(len == s.lengthOfLongestSubstring(s1));
+    }
+
+    SECTION("four")
+    {
+        Solution003 s;
+        string s1{ "123456122" };
+        int len = 6;
+
+        REQUIRE(len == s.lengthOfLongestSubstring(s1));
+    }
+}
