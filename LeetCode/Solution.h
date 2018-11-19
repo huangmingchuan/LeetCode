@@ -147,3 +147,26 @@ public:
         return result;
     }
 };
+
+class Solution004
+{
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+    {
+        double result = 0;
+
+        return result;
+    }
+};
+
+class Solution005
+{
+public:
+
+};
+
+class Solution006
+{
+public:
+
+};

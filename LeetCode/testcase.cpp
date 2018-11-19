@@ -131,3 +131,17 @@ TEST_CASE("Solution003")
         REQUIRE(len == s.lengthOfLongestSubstring(s1));
     }
 }
+
+TEST_CASE("Solution004")
+{
+    SECTION("one")
+    {
+        Solution004 s;
+        vector<int> num1{ 1,3 };
+        vector<int> num2{ 2 };
+        double result = 2;
+
+        //REQUIRE(result == s.findMedianSortedArrays(num1, num2));
+    }
+}
+
