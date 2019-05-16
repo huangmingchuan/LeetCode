@@ -12,7 +12,7 @@ TEST_CASE("isEqualList")
         LinkedList list1{ 1,2,3 };
         LinkedList list2{ 1,2,3 };
 
-        REQUIRE(isEqualList(list1.first(), list2.first()));
+        REQUIRE(isEqualList(list1, list2));
     }
 
     SECTION("two")
@@ -20,7 +20,7 @@ TEST_CASE("isEqualList")
         LinkedList list1{ 1,2,3 };
         LinkedList list2{ 4,5,6 };
 
-        REQUIRE_FALSE(isEqualList(list1.first(), list2.first()));
+        REQUIRE_FALSE(isEqualList(list1, list2));
     }
 
     SECTION("three")
@@ -28,14 +28,14 @@ TEST_CASE("isEqualList")
         LinkedList list1{ 1,2,3 };
         LinkedList list2{ 1,2,2 };
 
-        REQUIRE_FALSE(isEqualList(list1.first(), list2.first()));
+        REQUIRE_FALSE(isEqualList(list1, list2));
 
     }
 
     SECTION("four")
     {
-        ListNode *node1 = nullptr;
-        ListNode *node2 = nullptr;
+		LinkedList node1;
+		LinkedList node2;
 
         REQUIRE(isEqualList(node1, node2));
     }
@@ -140,6 +140,7 @@ TEST_CASE("Solution004")
         vector<int> num1{ 1,3 };
         vector<int> num2{ 2 };
         double result = 2;
+
 
         //REQUIRE(result == s.findMedianSortedArrays(num1, num2));
     }

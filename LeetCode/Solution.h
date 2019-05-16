@@ -57,6 +57,27 @@ bool isEqualList(ListNode *l1, ListNode *l2)
     return true;
 }
 
+bool isEqualList(LinkedList& list1, LinkedList& list2)
+{
+	ListNode *l1 = list1.first();
+	ListNode *l2 = list2.first();
+
+	while (l1 && l2)
+	{
+		if (l1->val != l2->val)
+		{
+			return false;
+		}
+		l1 = l1->next;
+		l2 = l2->next;
+	}
+
+	if ((l1 == nullptr) ^ (l2 == nullptr))
+		return false;
+
+	return true;
+}
+
 class Solution001
 {
 public:
