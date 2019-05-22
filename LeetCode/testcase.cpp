@@ -48,7 +48,7 @@ TEST_CASE("Solution001")
         Solution001 s;
         vector<int> nums{ 1,3,5,9 };
         int target = 10;
-        vector<int> result{ 0,3 };
+        vector<int> result{ 3,0 };
 
         REQUIRE(result == s.twoSum(nums, target));
     }
@@ -58,7 +58,7 @@ TEST_CASE("Solution001")
         Solution001 s;
         vector<int> nums{ 1,3,5,9 };
         int target = 8;
-        vector<int> result{ 1,2 };
+        vector<int> result{ 2,1 };
 
         REQUIRE(result == s.twoSum(nums, target));
     }
@@ -76,7 +76,7 @@ TEST_CASE("Solution002")
 
         auto result = s.addTwoNumber(list1.first(), list2.first());
 
-        REQUIRE(isEqualList(result, r.first()));
+        REQUIRE(isEqualList(result, r));
 
     }
 
@@ -88,7 +88,7 @@ TEST_CASE("Solution002")
         LinkedList list2{ 5,6,4 };
         LinkedList r{ 7,0,9 };
 
-        REQUIRE_FALSE(isEqualList(r.first(), s.addTwoNumber(list1.first(), list2.first())));
+        REQUIRE_FALSE(isEqualList(r, s.addTwoNumber(list1.first(), list2.first())));
     }
 
 }

@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <set>
+#include <unordered_map>
+#include <iostream>
 
 using namespace std;
 
@@ -30,6 +32,12 @@ public:
         }
     }
 
+	LinkedList(ListNode* l) : LinkedList()
+	{
+		auto p = head;
+		p->next = l;
+	}
+
     ListNode* first()
     {
         return head->next;
@@ -57,25 +65,26 @@ bool isEqualList(ListNode *l1, ListNode *l2)
     return true;
 }
 
+bool isEqualList(ListNode *l1, LinkedList& list2)
+{
+	ListNode *l2 = list2.first();
+
+	return isEqualList(l1, l2);
+}
+
+bool isEqualList(LinkedList& list1, ListNode *l2)
+{
+	ListNode *l1 = list1.first();
+
+	return isEqualList(l1, l2);
+}
+
 bool isEqualList(LinkedList& list1, LinkedList& list2)
 {
 	ListNode *l1 = list1.first();
 	ListNode *l2 = list2.first();
 
-	while (l1 && l2)
-	{
-		if (l1->val != l2->val)
-		{
-			return false;
-		}
-		l1 = l1->next;
-		l2 = l2->next;
-	}
-
-	if ((l1 == nullptr) ^ (l2 == nullptr))
-		return false;
-
-	return true;
+	return isEqualList(l1, l2);
 }
 
 class Solution001
@@ -83,20 +92,16 @@ class Solution001
 public:
     vector<int> twoSum(vector<int>& nums, int target)
     {
-        vector<int> result;
-        for (size_t i = 0; i < nums.size() - 1; ++i)
-        {
-            for (size_t j = i + 1; j < nums.size(); ++j)
-            {
-                if (nums[i] + nums[j] == target)
-                {
-                    result.push_back(i);
-                    result.push_back(j);
-                }
-            }
-        }
+		unordered_map<int, int> imap;
 
-        return result;
+		for (int i = 0;; ++i) {
+			auto it = imap.find(target - nums[i]);
+
+			if (it != imap.end())
+				return vector<int> {i, it->second};
+
+			imap[nums[i]] = i;
+		}
     }
 };
 
@@ -105,40 +110,16 @@ class Solution002
 public:
     ListNode * addTwoNumber(ListNode* l1, ListNode* l2)
     {
-        ListNode *result = nullptr;
-        int num = listToNumber(l1) + listToNumber(l2);
-        result = numberToList(num);
-        return result;
-    }
-
-private:
-    int listToNumber(ListNode *l)
-    {
-        int result = 0, base = 1;
-
-        while (l)
-        {
-            result = result + base * l->val;
-            base *= 10;
-            l = l->next;
-        }
-
-        return result;
-    }
-
-    ListNode * numberToList(int num)
-    {
-        ListNode head(0);
-        ListNode *p = &head;
-
-        while (num)
-        {
-            p->next = new ListNode(num % 10);
-            p = p->next;
-            num /= 10;
-        }
-
-        return head.next;
+		ListNode preHead(0), *p = &preHead;
+		int extra = 0;
+		while (l1 || l2 || extra) {
+			if (l1) extra += l1->val, l1 = l1->next;
+			if (l2) extra += l2->val, l2 = l2->next;
+			p->next = new ListNode(extra % 10);
+			extra /= 10;
+			p = p->next;
+		}
+		return preHead.next;
     }
 };
 
