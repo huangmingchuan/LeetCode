@@ -128,25 +128,15 @@ class Solution003
 public:
     int lengthOfLongestSubstring(string s)
     {
-        int result = 0, max;
-        for (auto it1 = s.begin(); it1 != s.end(); ++it1)
-        {
-            max = 0;
-            set<int> set_temp;
-            for (auto it2 = it1; it2 != s.end(); ++it2)
-            {
-                if (!set_temp.insert(*it2).second)
-                {
-                    max = it2 - it1;
-                    if (max > result)
-                    {
-                        result = max;
-                    }
-                    break;
-                }
-            }
-        }
-        return result;
+		vector<int> dict(256, -1);
+		int maxLen = 0, start = -1;
+		for (int i = 0; i != s.length(); i++) {
+			if (dict[s[i]] > start)
+				start = dict[s[i]];
+			dict[s[i]] = i;
+			maxLen = max(maxLen, i - start);
+		}
+		return maxLen;
     }
 };
 

@@ -71,8 +71,8 @@ TEST_CASE("Solution002")
         Solution002 s;
 
         LinkedList list1{ 2,4,3 };
-        LinkedList list2{ 5,6,4 };
-        LinkedList r{ 7,0,8 };
+        LinkedList list2{ 3,6,4 };
+        LinkedList r{ 5,0,8 };
 
         auto result = s.addTwoNumber(list1.first(), list2.first());
 
