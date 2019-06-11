@@ -138,11 +138,76 @@ TEST_CASE("Solution004")
     {
         Solution004 s;
         vector<int> num1{ 1,3 };
-        vector<int> num2{ 2 };
+        vector<int> num2{ 2 }; 
         double result = 2;
 
-
-        //REQUIRE(result == s.findMedianSortedArrays(num1, num2));
+        REQUIRE(result == s.findMedianSortedArrays(num1, num2));
     }
+
+	SECTION("two")
+	{
+		Solution004 s;
+		vector<int> num1{ 1,2 };
+		vector<int> num2{ 3,4 };
+		double result = 2.5;
+
+		REQUIRE(result == s.findMedianSortedArrays(num1, num2));
+	}
+
+	SECTION("three")
+	{
+		Solution004 s;
+		vector<int> num1{ 1,2,3 };
+		vector<int> num2;
+		double result = 2;
+
+		REQUIRE(result == s.findMedianSortedArrays(num1, num2));
+	}
+
+	SECTION("four")
+	{
+		Solution004 s;
+		vector<int> num1;
+		vector<int> num2{ 1,2,3,4,5 };
+		double result = 3;
+
+		REQUIRE(result == s.findMedianSortedArrays(num1, num2));
+	}
+}
+
+TEST_CASE("Solution005")
+{
+	SECTION("one")
+	{
+		Solution005 s;
+		string input{ "babad" };
+		string out1{ "bab" };
+		string out2{ "aba" };
+
+		//REQUIRE(out1 == s.longestPalindrome(input));
+
+		//REQUIRE(out2 == s.longestPalindrome(input));
+	}
+
+	SECTION("two")
+	{
+		Solution005 s;
+		string input{ "cbbd" };
+		string out1{ "bb" };
+
+		//REQUIRE(out1 == s.longestPalindrome(input));
+	}
+}
+
+
+TEST_CASE("Solution006")
+{
+	SECTION("one")
+	{
+		Solution006 s;
+
+
+		REQUIRE(true);
+	}
 }
 
