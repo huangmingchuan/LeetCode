@@ -9,83 +9,83 @@ using namespace std;
 
 struct ListNode
 {
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(nullptr)
-	{}
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr)
+    {}
 };
 
 class LinkedList
 {
 public:
-	LinkedList()
-	{
-		head = new ListNode(0);
-	}
+    LinkedList()
+    {
+        head = new ListNode(0);
+    }
 
-	LinkedList(initializer_list<int> l) : LinkedList()
-	{
-		auto p = head;
-		for (auto i : l)
-		{
-			p->next = new ListNode(i);
-			p = p->next;
-		}
-	}
+    LinkedList(initializer_list<int> l) : LinkedList()
+    {
+        auto p = head;
+        for (auto i : l)
+        {
+            p->next = new ListNode(i);
+            p = p->next;
+        }
+    }
 
-	LinkedList(ListNode* l) : LinkedList()
-	{
-		auto p = head;
-		p->next = l;
-	}
+    LinkedList(ListNode* l) : LinkedList()
+    {
+        auto p = head;
+        p->next = l;
+    }
 
-	ListNode* first()
-	{
-		return head->next;
-	}
+    ListNode* first()
+    {
+        return head->next;
+    }
 
 private:
-	ListNode * head;
+    ListNode * head;
 };
 
 bool isEqualList(ListNode *l1, ListNode *l2)
 {
-	while (l1 && l2)
-	{
-		if (l1->val != l2->val)
-		{
-			return false;
-		}
-		l1 = l1->next;
-		l2 = l2->next;
-	}
+    while (l1 && l2)
+    {
+        if (l1->val != l2->val)
+        {
+            return false;
+        }
+        l1 = l1->next;
+        l2 = l2->next;
+    }
 
-	if ((l1 == nullptr) ^ (l2 == nullptr))
-		return false;
+    if ((l1 == nullptr) ^ (l2 == nullptr))
+        return false;
 
-	return true;
+    return true;
 }
 
 bool isEqualList(ListNode *l1, LinkedList& list2)
 {
-	ListNode *l2 = list2.first();
+    ListNode *l2 = list2.first();
 
-	return isEqualList(l1, l2);
+    return isEqualList(l1, l2);
 }
 
 bool isEqualList(LinkedList& list1, ListNode *l2)
 {
-	ListNode *l1 = list1.first();
+    ListNode *l1 = list1.first();
 
-	return isEqualList(l1, l2);
+    return isEqualList(l1, l2);
 }
 
 bool isEqualList(LinkedList& list1, LinkedList& list2)
 {
-	ListNode *l1 = list1.first();
-	ListNode *l2 = list2.first();
+    ListNode *l1 = list1.first();
+    ListNode *l2 = list2.first();
 
-	return isEqualList(l1, l2);
+    return isEqualList(l1, l2);
 }
 
 /*
@@ -105,19 +105,19 @@ return [0, 1].
 class Solution001
 {
 public:
-	vector<int> twoSum(vector<int>& nums, int target)
-	{
-		unordered_map<int, int> imap;
+    vector<int> twoSum(vector<int>& nums, int target)
+    {
+        unordered_map<int, int> imap;
 
-		for (int i = 0;; ++i) {
-			auto it = imap.find(target - nums[i]);
+        for (int i = 0;; ++i) {
+            auto it = imap.find(target - nums[i]);
 
-			if (it != imap.end())
-				return vector<int> {i, it->second};
+            if (it != imap.end())
+                return vector<int> {i, it->second};
 
-			imap[nums[i]] = i;
-		}
-	}
+            imap[nums[i]] = i;
+        }
+    }
 };
 
 /*
@@ -138,19 +138,19 @@ Explanation: 342 + 465 = 807.
 class Solution002
 {
 public:
-	ListNode * addTwoNumber(ListNode* l1, ListNode* l2)
-	{
-		ListNode preHead(0), *p = &preHead;
-		int extra = 0;
-		while (l1 || l2 || extra) {
-			if (l1) extra += l1->val, l1 = l1->next;
-			if (l2) extra += l2->val, l2 = l2->next;
-			p->next = new ListNode(extra % 10);
-			extra /= 10;
-			p = p->next;
-		}
-		return preHead.next;
-	}
+    ListNode * addTwoNumber(ListNode* l1, ListNode* l2)
+    {
+        ListNode preHead(0), *p = &preHead;
+        int extra = 0;
+        while (l1 || l2 || extra) {
+            if (l1) extra += l1->val, l1 = l1->next;
+            if (l2) extra += l2->val, l2 = l2->next;
+            p->next = new ListNode(extra % 10);
+            extra /= 10;
+            p = p->next;
+        }
+        return preHead.next;
+    }
 };
 
 /*
@@ -173,23 +173,23 @@ Example 3:
 Input: "pwwkew"
 Output: 3
 Explanation: The answer is "wke", with the length of 3.
-			 Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 class Solution003
 {
 public:
-	int lengthOfLongestSubstring(string s)
-	{
-		vector<int> dict(256, -1);
-		int maxLen = 0, start = -1;
-		for (int i = 0; i != s.length(); i++) {
-			if (dict[s[i]] > start)
-				start = dict[s[i]];
-			dict[s[i]] = i;
-			maxLen = max(maxLen, i - start);
-		}
-		return maxLen;
-	}
+    int lengthOfLongestSubstring(string s)
+    {
+        vector<int> dict(256, -1);
+        int maxLen = 0, start = -1;
+        for (int i = 0; i != s.length(); i++) {
+            if (dict[s[i]] > start)
+                start = dict[s[i]];
+            dict[s[i]] = i;
+            maxLen = max(maxLen, i - start);
+        }
+        return maxLen;
+    }
 };
 
 /*
@@ -217,29 +217,29 @@ The median is (2 + 3)/2 = 2.5
 class Solution004
 {
 public:
-	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
-	{
-		int N1 = nums1.size();
-		int N2 = nums2.size();
-		if (N1 < N2)
-			return findMedianSortedArrays(nums2, nums1);
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+    {
+        int N1 = nums1.size();
+        int N2 = nums2.size();
+        if (N1 < N2)
+            return findMedianSortedArrays(nums2, nums1);  // Make sure A2 is the shorter one.
 
-		int lo = 0, hi = N2 * 2;
-		while (lo <= hi)
-		{
-			int mid2 = (lo + hi) / 2;
-			int mid1 = N1 + N2 - mid2;
-			double L1 = (mid1 == 0) ? INT_MIN : nums1[(mid1 - 1) / 2];
-			double L2 = (mid2 == 0) ? INT_MIN : nums2[(mid2 - 1) / 2];
-			double R1 = (mid1 == N1 * 2) ? INT_MAX : nums1[mid1 / 2];
-			double R2 = (mid2 == N2 * 2) ? INT_MAX : nums2[mid2 / 2];
+        int lo = 0, hi = N2 * 2;
+        while (lo <= hi)
+        {
+            int mid2 = (lo + hi) / 2; // Try Cut 2 
+            int mid1 = N1 + N2 - mid2; // Calculate Cut 1 accordingly
+            double L1 = (mid1 == 0) ? INT_MIN : nums1[(mid1 - 1) / 2];  // Get L1, R1, L2, R2 respectively
+            double L2 = (mid2 == 0) ? INT_MIN : nums2[(mid2 - 1) / 2];
+            double R1 = (mid1 == N1 * 2) ? INT_MAX : nums1[mid1 / 2];
+            double R2 = (mid2 == N2 * 2) ? INT_MAX : nums2[mid2 / 2];
 
-			if (L1 > R2) lo = mid2 + 1;
-			else if (L2 > R1) hi = mid2 - 1;
-			else return (max(L1, L2) + min(R1, R2)) / 2;
-		}
-		return -1;
-	}
+            if (L1 > R2) lo = mid2 + 1; // A1's lower half is too big; need to move C1 left (C2 right)
+            else if (L2 > R1) hi = mid2 - 1; // A2's lower half too big; need to move C2 left.
+            else return (max(L1, L2) + min(R1, R2)) / 2; // Otherwise, that's the right cut.
+        }
+        return -1;
+    }
 };
 
 /*
@@ -261,10 +261,31 @@ Output: "bb"
 class Solution005
 {
 public:
-	string longestPalindrome(string s)
-	{
-		return "";
-	}
+    string longestPalindrome(string s)
+    {
+        if (s.size() < 2) return s;
+        int max_len = 0;
+        int start_idx = 0;
+        int i = 0;
+        while (i < s.size()) {
+            int r_ptr = i;
+            int l_ptr = i;
+            //find the middle of a palindrome
+            while (r_ptr < s.size() - 1 && s[r_ptr] == s[r_ptr + 1]) r_ptr++;
+            i = r_ptr + 1;
+            //expand from the middle out
+            while (r_ptr < s.size() - 1 && l_ptr > 0 && s[r_ptr + 1] == s[l_ptr - 1]) {
+                r_ptr++;
+                l_ptr--;
+            }
+            int new_len = r_ptr - l_ptr + 1;
+            if (new_len > max_len) {
+                start_idx = l_ptr;
+                max_len = new_len;
+            }
+        }
+        return s.substr(start_idx, max_len);
+    }
 };
 
 /*
@@ -299,10 +320,24 @@ P     I
 class Solution006
 {
 public:
-	string convert(string s, int numRows)
-	{
+    string convert(string s, int numRows)
+    {
+        if (numRows == 1) return s;
 
-	}
+        vector<string> rows(min(numRows, int(s.size())));
+        int curRow = 0;
+        bool goingDown = false;
+
+        for (char c : s) {
+            rows[curRow] += c;
+            if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;
+            curRow += goingDown ? 1 : -1;
+        }
+
+        string ret;
+        for (string row : rows) ret += row;
+        return ret;
+    }
 };
 
 /*
@@ -328,10 +363,18 @@ Assume we are dealing with an environment which could only store integers within
 class Solution007
 {
 public:
-	int reverse(int x)
-	{
-
-	}
+    int reverse(int x)
+    {
+        int rev = 0;
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
+            if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) return 0;
+            if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8)) return 0;
+            rev = rev * 10 + pop;
+        }
+        return rev;
+    }
 };
 
 /*
@@ -361,7 +404,7 @@ Example 2:
 Input: "   -42"
 Output: -42
 Explanation: The first non-whitespace character is '-', which is the minus sign.
-			 Then take as many numerical digits as possible, which gets 42.
+             Then take as many numerical digits as possible, which gets 42.
 
 Example 3:
 
@@ -374,22 +417,34 @@ Example 4:
 Input: "words and 987"
 Output: 0
 Explanation: The first non-whitespace character is 'w', which is not a numerical
-			 digit or a +/- sign. Therefore no valid conversion could be performed.
+             digit or a +/- sign. Therefore no valid conversion could be performed.
 
 Example 5:
 
 Input: "-91283472332"
 Output: -2147483648
 Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
-			 Thefore INT_MIN (−231) is returned.
+             Thefore INT_MIN (−231) is returned.
 */
 class Solution008
 {
 public:
-	int myAtoi(string str)
-	{
-
-	}
+    int myAtoi(string str)
+    {
+        int sign = 1, base = 0, i = 0;
+        while (str[i] == ' ') { i++; }
+        if (str[i] == '-' || str[i] == '+') {
+            sign = 1 - 2 * (str[i++] == '-');
+        }
+        while (str[i] >= '0' && str[i] <= '9') {
+            if (base > INT_MAX / 10 || (base == INT_MAX / 10 && str[i] - '0' > 7)) {
+                if (sign == 1) return INT_MAX;
+                else return INT_MIN;
+            }
+            base = 10 * base + (str[i++] - '0');
+        }
+        return base * sign;
+    }
 };
 
 /*
@@ -421,10 +476,17 @@ Coud you solve it without converting the integer to a string?
 class Solution009
 {
 public:
-	bool isPalindrome(int x)
-	{
-
-	}
+    bool isPalindrome(int x)
+    {
+        if (x < 0 || (x != 0 && x % 10 == 0)) return false;
+        int sum = 0;
+        while (x > sum)
+        {
+            sum = sum * 10 + x % 10;
+            x = x / 10;
+        }
+        return (x == sum) || (x == sum / 10);
+    }
 };
 
 /*
@@ -478,10 +540,52 @@ Output: false
 class Solution010
 {
 public:
-	bool isMatch(string s, string p)
-	{
+    //dp
+    bool isMatch(string s, string p)
+    {
+        /**
+        * f[i][j]: if s[0..i-1] matches p[0..j-1]
+        * if p[j - 1] != '*'
+        *      f[i][j] = f[i - 1][j - 1] && s[i - 1] == p[j - 1]
+        * if p[j - 1] == '*', denote p[j - 2] with x
+        *      f[i][j] is true iff any of the following is true
+        *      1) "x*" repeats 0 time and matches empty: f[i][j - 2]
+        *      2) "x*" repeats >= 1 times and matches "x*x": s[i - 1] == x && f[i - 1][j]
+        * '.' matches any single character
+        */
+        int m = s.size(), n = p.size();
+        vector<vector<bool>> f(m + 1, vector<bool>(n + 1, false));
 
-	}
+        f[0][0] = true;
+        for (int i = 1; i <= m; i++)
+            f[i][0] = false;
+        // p[0.., j - 3, j - 2, j - 1] matches empty iff p[j - 1] is '*' and p[0..j - 3] matches empty
+        for (int j = 1; j <= n; j++)
+            f[0][j] = j > 1 && '*' == p[j - 1] && f[0][j - 2];
+
+        for (int i = 1; i <= m; i++)
+            for (int j = 1; j <= n; j++)
+                if (p[j - 1] != '*')
+                    f[i][j] = f[i - 1][j - 1] && (s[i - 1] == p[j - 1] || '.' == p[j - 1]);
+                else
+                    // p[0] cannot be '*' so no need to check "j > 1" here
+                    f[i][j] = f[i][j - 2] || (s[i - 1] == p[j - 2] || '.' == p[j - 2]) && f[i - 1][j];
+
+        return f[m][n];
+    }
+
+    //recursion
+    bool isMatch_2(string s, string p)
+    {
+        if (p.empty())    return s.empty();
+
+        if ('*' == p[1])
+            // x* matches empty string or at least one character: x* -> xx*
+            // *s is to ensure s is non-empty
+            return (isMatch(s, p.substr(2)) || !s.empty() && (s[0] == p[0] || '.' == p[0]) && isMatch(s.substr(1), p));
+        else
+            return !s.empty() && (s[0] == p[0] || '.' == p[0]) && isMatch(s.substr(1), p.substr(1));
+    }
 };
 
 /*
@@ -507,10 +611,10 @@ Output: 49
 class Solution011
 {
 public:
-	int maxArea(vector<int>& height)
-	{
+    int maxArea(vector<int>& height)
+    {
 
-	}
+    }
 };
 
 /*
@@ -561,10 +665,10 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 class Solution012
 {
 public:
-	string intToRoman(int num)
-	{
+    string intToRoman(int num)
+    {
 
-	}
+    }
 };
 
 /*
@@ -615,10 +719,10 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 class Solution013
 {
 public:
-	int romanToInt(string s)
-	{
+    int romanToInt(string s)
+    {
 
-	}
+    }
 };
 
 /*
@@ -644,10 +748,10 @@ All given inputs are in lowercase letters a-z.
 class Solution014
 {
 public:
-	string longestCommonPrefix(vector<string>& strs)
-	{
+    string longestCommonPrefix(vector<string>& strs)
+    {
 
-	}
+    }
 };
 
 /*
@@ -672,10 +776,10 @@ A solution set is:
 class Solution015
 {
 public:
-	vector<vector<int>> threeSum(vector<int>& nums)
-	{
+    vector<vector<int>> threeSum(vector<int>& nums)
+    {
 
-	}
+    }
 };
 
 /*
@@ -692,10 +796,10 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 class Solution016
 {
 public:
-	int threeSumClosest(vector<int>& nums, int target)
-	{
+    int threeSumClosest(vector<int>& nums, int target)
+    {
 
-	}
+    }
 };
 
 /*
@@ -718,10 +822,10 @@ Although the above answer is in lexicographical order, your answer could be in a
 class Solution017
 {
 public:
-	vector<string> letterCombinations(string digits)
-	{
+    vector<string> letterCombinations(string digits)
+    {
 
-	}
+    }
 };
 
 /*
@@ -747,10 +851,10 @@ A solution set is:
 class Solution018
 {
 public:
-	vector<vector<int>> fourSum(vector<int>& nums, int target)
-	{
+    vector<vector<int>> fourSum(vector<int>& nums, int target)
+    {
 
-	}
+    }
 };
 
 /*
@@ -774,10 +878,10 @@ Could you do this in one pass?
 class Solution019
 {
 public:
-	ListNode* removeNthFromEnd(ListNode* head, int n)
-	{
+    ListNode* removeNthFromEnd(ListNode* head, int n)
+    {
 
-	}
+    }
 };
 
 /*
@@ -815,10 +919,10 @@ Output: true
 class Solution020
 {
 public:
-	bool isValid(string s)
-	{
+    bool isValid(string s)
+    {
 
-	}
+    }
 };
 
 class Solution021

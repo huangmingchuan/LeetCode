@@ -184,9 +184,7 @@ TEST_CASE("Solution005")
 		string out1{ "bab" };
 		string out2{ "aba" };
 
-		//REQUIRE(out1 == s.longestPalindrome(input));
-
-		//REQUIRE(out2 == s.longestPalindrome(input));
+		REQUIRE(out1 == s.longestPalindrome(input));
 	}
 
 	SECTION("two")
@@ -195,7 +193,7 @@ TEST_CASE("Solution005")
 		string input{ "cbbd" };
 		string out1{ "bb" };
 
-		//REQUIRE(out1 == s.longestPalindrome(input));
+		REQUIRE(out1 == s.longestPalindrome(input));
 	}
 }
 
@@ -205,9 +203,218 @@ TEST_CASE("Solution006")
 	SECTION("one")
 	{
 		Solution006 s;
+        string input{ "PAYPALISHIRING" };
+        string output{ "PAHNAPLSIIGYIR" };
 
-
-		REQUIRE(true);
+        REQUIRE(output == s.convert(input, 3));
 	}
+
+    SECTION("two")
+    {
+        Solution006 s;
+        string input{ "PAYPALISHIRING" };
+        string output{ "PINALSIGYAHRPI" };
+
+        REQUIRE(output == s.convert(input, 4));
+    }
 }
 
+TEST_CASE("Solution007")
+{
+    SECTION("one")
+    {
+        Solution007 s;
+        int i = 123;
+        int o = 321;
+
+        REQUIRE(o == s.reverse(i));
+    }
+
+    SECTION("two")
+    {
+        Solution007 s;
+        int i = -123;
+        int o = -321;
+
+        REQUIRE(o == s.reverse(i));
+    }
+
+    SECTION("three")
+    {
+        Solution007 s;
+        int i = 120;
+        int o = 21;
+
+        REQUIRE(o == s.reverse(i));
+    }
+}
+
+
+TEST_CASE("Solution008")
+{
+    SECTION("one")
+    {
+        Solution008 s;
+        string i{ "42" };
+        int o = 42;
+
+        REQUIRE(o == s.myAtoi(i));
+    }
+
+    SECTION("two")
+    {
+        Solution008 s;
+        string i{ "   -42" };
+        int o = -42;
+
+        REQUIRE(o == s.myAtoi(i));
+    }
+
+    SECTION("three")
+    {
+        Solution008 s;
+        string i{ "4193 with words" };
+        int o = 4193;
+
+        REQUIRE(o == s.myAtoi(i));
+    }
+
+    SECTION("four")
+    {
+        Solution008 s;
+        string i{ "words and 987" };
+        int o = 0;
+
+        REQUIRE(o == s.myAtoi(i));
+    }
+
+    SECTION("five")
+    {
+        Solution008 s;
+        string i{ "-91283472332" };
+        int o = INT_MIN;
+
+        REQUIRE(o == s.myAtoi(i));
+    }
+}
+
+
+TEST_CASE("Solution009")
+{
+    SECTION("one")
+    {
+        Solution009 s;
+        int i = 121;
+        bool o = true;
+
+        REQUIRE(o == s.isPalindrome(i));
+    }
+
+    SECTION("two")
+    {
+        Solution009 s;
+        int i = -121;
+        bool o = false;
+
+        REQUIRE(o == s.isPalindrome(i));
+    }
+
+    SECTION("three")
+    {
+        Solution009 s;
+        int i = 10;
+        bool o = false;
+
+        REQUIRE(o == s.isPalindrome(i));
+    }
+}
+
+
+TEST_CASE("Solution010")
+{
+    SECTION("one")
+    {
+        Solution010 solution;
+        string s{ "aa" };
+        string p{ "a" };
+        bool o = false;
+
+        REQUIRE(o == solution.isMatch(s, p));
+    }
+
+    SECTION("two")
+    {
+        Solution010 solution;
+        string s{ "aa" };
+        string p{ "a*" };
+        bool o = true;
+
+        REQUIRE(o == solution.isMatch(s, p));
+    }
+
+    SECTION("three")
+    {
+        Solution010 solution;
+        string s{ "aa" };
+        string p{ ".*" };
+        bool o = true;
+
+        REQUIRE(o == solution.isMatch(s, p));
+    }
+
+    SECTION("four")
+    {
+        Solution010 solution;
+        string s{ "aab" };
+        string p{ "c*a*b" };
+        bool o = true;
+
+        REQUIRE(o == solution.isMatch(s, p));
+    }
+
+    SECTION("five")
+    {
+        Solution010 solution;
+        string s{ "mississippi" };
+        string p{ "mis*is*p*." };
+        bool o = false;
+
+        REQUIRE(o == solution.isMatch(s, p));
+    }
+}
+
+TEST_CASE("Solution011")
+{
+    SECTION("one")
+    {
+
+    }
+
+    SECTION("two")
+    {
+
+    }
+
+    SECTION("three")
+    {
+
+    }
+}
+
+TEST_CASE("Solution012")
+{
+    SECTION("one")
+    {
+
+    }
+
+    SECTION("two")
+    {
+
+    }
+
+    SECTION("three")
+    {
+
+    }
+}
